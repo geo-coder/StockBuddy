@@ -79,8 +79,6 @@ function NewAccount() {
   const [errorFromFB, setErrorFromFB] = useState(null);
 
   const handleChange = (e) => {
-    // console.log(e.target.name);
-    // console.log(e.target.value);
     setFormVals({ ...formVals, [e.target.name]: e.target.value });
     if (e.target.name === "email") {
       if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.target.value) === true) {
@@ -121,11 +119,6 @@ function NewAccount() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log(
-      "submit",
-      event.target.email.value,
-      event.target.password.value
-    );
     firebase
       .auth()
       .createUserWithEmailAndPassword(
@@ -135,8 +128,6 @@ function NewAccount() {
       .then((userCredential) => {
         // Signed in
         var user = userCredential.user;
-
-        console.log("user", user);
 
         db.collection("users")
           .doc(user.uid)
@@ -152,7 +143,7 @@ function NewAccount() {
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+
         setErrorFromFB(errorMessage);
         // ..
       });

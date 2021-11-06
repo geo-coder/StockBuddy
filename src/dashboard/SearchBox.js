@@ -242,7 +242,6 @@ const SearchBox = (props) => {
           return;
         }
 
-        //console.log("data from stock card ", data);
         setCurrentChart(val);
         setChartData(data);
       })

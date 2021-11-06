@@ -54,30 +54,21 @@ function Adjuster(props) {
     }
   }, [props.currentChart, props.costAverages]);
 
-  useEffect(
-    () => {
-      // determines whether form is valid for submission (share and cost inputs)
+  useEffect(() => {
+    // determines whether form is valid for submission (share and cost inputs)
 
-      if (
-        props.currentChart &&
-        formValues.price &&
-        formValues.shares &&
-        !isNaN(formValues.price) &&
-        !isNaN(formValues.shares)
-      ) {
-        setValidForSubmit(true);
-      } else {
-        setValidForSubmit(false);
-      }
-    },
-    // optional dependency array
-    [props.currentChart, formValues]
-  );
-
-  //trigger event w portfolioclicked
-  // useEffect(() => {
-  //   console.log(props.portfolioClicked);
-  // }, [props.portfolioClicked]);
+    if (
+      props.currentChart &&
+      formValues.price &&
+      formValues.shares &&
+      !isNaN(formValues.price) &&
+      !isNaN(formValues.shares)
+    ) {
+      setValidForSubmit(true);
+    } else {
+      setValidForSubmit(false);
+    }
+  }, [props.currentChart, formValues]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

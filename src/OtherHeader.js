@@ -54,9 +54,9 @@ export default function ButtonAppBar(props) {
         // Sign-out successful.
         history.push("/");
       })
-      .catch((error) => {
+      .catch(() => {
         // An error happened.
-        console.log("signout error: ", error);
+        console.log("signout error");
       });
   };
 

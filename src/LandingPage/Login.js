@@ -77,9 +77,6 @@ function Login() {
         event.target.password.value
       )
       .then((userCredential) => {
-        // Signed in
-        //var user = userCredential.user;
-        //console.log("signed in? user", user);
         setLoginErr(null);
         history.push("/dashboard");
         // ...
@@ -87,8 +84,6 @@ function Login() {
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage;
-        console.log("error, error code", errorCode);
-        console.log("err msg, ", error.message);
 
         if (errorCode === "auth/user-not-found") {
           errorMessage = "Sorry, we don't have that email address on file.";

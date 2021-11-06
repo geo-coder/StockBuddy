@@ -77,22 +77,16 @@ function AccountSettings(props) {
 
   const deleteAccount = () => {
     reauth().then((val) => {
-      console.log("did auth work? ", val);
       if (val) {
-        console.log("you re-authed we can delete");
-
         db.collection("users")
           .doc(props.userStatus)
           .delete()
           .then(() => {
-            console.log("Document successfully deleted!");
-
             const user = firebase.auth().currentUser;
 
             user
               .delete()
               .then(() => {
-                console.log("user deleted"); // User deleted.
                 history.push("/");
               })
               .catch((error) => {
@@ -102,7 +96,7 @@ function AccountSettings(props) {
                 // ...
               });
           })
-          .catch((error) => {
+          .catch(() => {
             //console.error("Error removing document: ", error);
             setErrorMsg("Database error. Please try again later.");
           });
@@ -119,7 +113,6 @@ function AccountSettings(props) {
     const result = await user
       .reauthenticateWithCredential(credential)
       .then(() => {
-        console.log("User re-authenticated.");
         return true;
       })
       .catch((error) => {
@@ -130,9 +123,7 @@ function AccountSettings(props) {
           setErrorMsg("Too many password attempts. Please try again later");
           setDisableSubmit(true);
         }
-        console.log("error msg: ", error.message);
-        console.log("error code", error.code);
-        console.log("error obj", error);
+
         return false;
       });
     return result;
