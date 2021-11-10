@@ -97,6 +97,7 @@ function Adjuster(props) {
             id="standard-basic"
             label="Total Shares"
             name="shares"
+            type="tel"
             value={formValues.shares}
             onChange={inputChange}
             disabled={props.currentChart ? false : true}
@@ -107,9 +108,10 @@ function Adjuster(props) {
             }}
           />
           <TextField
-            id="standard-basic"
+            id="standard-basic2"
             label="Avg Cost / Share"
             name="price"
+            type="tel"
             value={formValues.price}
             onFocus={handleFocus}
             onChange={inputChange}
